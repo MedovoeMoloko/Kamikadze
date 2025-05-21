@@ -2,52 +2,102 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Kamikadze-food-delivery</title>
-   <style>
+  <title>Камикадзе — доставка еды</title>
+  <style>
     body {
-      background-color: #f0f8ff;
-      font-family: Arial, sans-serif;
-      text-align: center;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
     }
 
-    h1 {
-      color: #2c3e50;
-      margin-top: 50px;
+    header {
+      background-color: #e60012;
+      padding: 30px 20px;
     }
 
-    p {
-      color: #555;
+    header img {
+      width: 100px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    header h1 {
+      margin: 10px 0 5px;
+      font-size: 36px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 0;
       font-size: 18px;
-    }
-
-    img {
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-      max-width: 80%;
-    }
-
-    img:hover {
-      transform: scale(1.05);
+      font-style: italic;
     }
 
     .content {
-      padding: 20px;
-      max-width: 700px;
+      padding: 40px 20px;
+    }
+
+    .content h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #e60012;
+    }
+
+    .content p {
+      font-size: 18px;
+      max-width: 600px;
       margin: auto;
+      line-height: 1.6;
+    }
+
+    .btn-order {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background-color: #e60012;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .btn-order:hover {
+      background-color: #ff1f3d;
+    }
+
+    footer {
+      margin-top: 60px;
+      background-color: #222;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
     }
   </style>
 </head>
-</head>
 <body>
-     <div class="content">
-  <h1>Камикадзе!</h1>
-  <p>Жри говно!!!</p>
-  <p>Твой доставщик:</p>
-  <img src="images.jpeg" alt="Картинки нет" width="50%">
-  <p> Я взорву твой дом и убью твою семью </p>
-     </div>
+
+  <header>
+    <img src="images.jpeg" alt="Логотип Камикадзе">
+    <h1>Камикадзе</h1>
+    <p>Быстрее ветра. Вкуснее судьбы.</p>
+  </header>
+
+  <div class="content">
+    <h2>Горячая доставка еды в твоём городе</h2>
+    <p>
+      Мы доставим лапшу, суши, бургеры и многое другое за 29 минут или меньше.
+      "Камикадзе" — это вкус, скорость и эффект неожиданности.
+    </p>
+    <a href="#" class="btn-order">Заказать сейчас</a>
+  </div>
+
+  <footer>
+    © 2025 Камикадзе. Все права съедены.
+  </footer>
+
 </body>
 </html>
