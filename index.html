@@ -13,12 +13,12 @@
     }
 
     header {
-      background-color: #e60012;
+      background-color: #f4a261;
       padding: 30px 20px;
     }
 
     header img {
-      width: 200px;
+      width: 100px;
       border-radius: 50%;
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
     }
@@ -42,7 +42,7 @@
     .content h2 {
       font-size: 28px;
       margin-bottom: 15px;
-      color: #e3b74f;
+      color: #f4a261;
     }
 
     .content p {
@@ -56,17 +56,18 @@
       display: inline-block;
       margin-top: 30px;
       padding: 15px 30px;
-      background-color: #e3b74f;
+      background-color: #f4a261;
       color: white;
       font-size: 18px;
       border: none;
       border-radius: 8px;
       text-decoration: none;
+      cursor: pointer;
       transition: background-color 0.3s;
     }
 
     .btn-order:hover {
-      background-color: #ff1f3d;
+      background-color: #e76f51;
     }
 
     footer {
@@ -76,6 +77,46 @@
       font-size: 14px;
       color: #aaa;
     }
+
+    /* ===== МОДАЛЬНОЕ ОКНО ===== */
+    .modal {
+      display: none; /* скрыто по умолчанию */
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      color: #000;
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      background-color: #f4a261;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      background-color: #e76f51;
+    }
   </style>
 </head>
 <body>
@@ -83,29 +124,48 @@
   <header>
     <img src="images.jpeg" alt="Логотип Камикадзе">
     <h1>Камикадзе</h1>
-    <p>Быстрее ветра. Вкуснее судьбы. Ты взорвёшься.</p>
+    <p>Быстрее ветра. Вкуснее судьбы.Ты взорвёшься.</p>
   </header>
 
   <div class="content">
     <h2>Горячая доставка еды в твоём городе</h2>
     <p>
       Мы доставим лапшу, суши, бургеры и многое другое за 29 минут или меньше.
-      "Камикадзе" — это вкус, скорость и эффект неожиданности.
-      А ещё мы убьём твою семью :)
+      "Камикадзе" — это вкус, скорость и эффект неожиданности. А ещё мы убьём твою семью :)
     </p>
-    <a href="#" class="btn-order">Заказать сейчас</a>
-    
-    <script>
-  function showMessage() {
-    alert("Спасибо за заказ!, ТЕБЯ ВЗОРВУТ ТУШКАНЧИКИ ЧЕРЕЗ 5 МИНУТ 🚀🔥💥💣");
-  }
-</script>
-    
+    <button class="btn-order" onclick="openModal()">Заказать сейчас</button>
   </div>
 
   <footer>
     © 2025 Камикадзе. Все права съедены.
   </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <h2>Спасибо за заказ!</h2>
+      <p> ТЕБЯ ВЗОРВУТ ТУШКАНЧИКИ ЧЕРЕЗ 5 МИНУТ 🚀🔥💥💣🛵💨</p>
+      <button class="close-btn" onclick="closeModal()">Принять</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("orderModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("orderModal").style.display = "none";
+    }
+
+    // Закрытие по клику вне окна
+    window.onclick = function(event) {
+      const modal = document.getElementById("orderModal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
 </body>
 </html>
