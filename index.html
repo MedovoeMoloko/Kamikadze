@@ -1,171 +1,338 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Камикадзе — доставка еды</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background-color: #111;
-      color: #fff;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodExpress - Доставка еды</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        header {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://example.com/food-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+        
+        .search-bar button {
+            padding: 15px 25px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .restaurants {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .restaurant-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .restaurant-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .restaurant-info {
+            padding: 20px;
+        }
+        
+        .restaurant-info h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .restaurant-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .rating {
+            color: #ffb800;
+            font-weight: bold;
+        }
+        
+        .delivery-time {
+            display: inline-block;
+            margin-left: 15px;
+            color: #666;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
 
-    header {
-      background-color: #f4a261;
-      padding: 30px 20px;
-    }
-
-    header img {
-      width: 100px;
-      border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    }
-
-    header h1 {
-      margin: 10px 0 5px;
-      font-size: 36px;
-      letter-spacing: 1px;
-    }
-
-    header p {
-      margin: 0;
-      font-size: 18px;
-      font-style: italic;
-    }
-
-    .content {
-      padding: 40px 20px;
-    }
-
-    .content h2 {
-      font-size: 28px;
-      margin-bottom: 15px;
-      color: #f4a261;
-    }
-
-    .content p {
-      font-size: 18px;
-      max-width: 600px;
-      margin: auto;
-      line-height: 1.6;
-    }
-
-    .btn-order {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 15px 30px;
-      background-color: #f4a261;
-      color: white;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .btn-order:hover {
-      background-color: #e76f51;
-    }
-
-    footer {
-      margin-top: 60px;
-      background-color: #222;
-      padding: 20px;
-      font-size: 14px;
-      color: #aaa;
-    }
-
-    /* ===== МОДАЛЬНОЕ ОКНО ===== */
-    .modal {
-      display: none; /* скрыто по умолчанию */
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      color: #000;
-      margin: 10% auto;
-      padding: 30px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .close-btn {
-      margin-top: 20px;
-      background-color: #f4a261;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .close-btn:hover {
-      background-color: #e76f51;
-    }
-  </style>
+margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+            }
+            
+            .search-bar input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            .search-bar button {
+                border-radius: 4px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <img src="images.jpeg" alt="Логотип Камикадзе">
-    <h1>Камикадзе</h1>
-    <p>Быстрее ветра. Вкуснее судьбы.Ты взорвёшься.</p>
-  </header>
-
-  <div class="content">
-    <h2>Горячая доставка еды в твоём городе</h2>
-    <p>
-      Мы доставим лапшу, суши, бургеры и многое другое за 29 минут или меньше.
-      "Камикадзе" — это вкус, скорость и эффект неожиданности. А ещё мы убьём твою семью :)
-    </p>
-    <button class="btn-order" onclick="openModal()">Заказать сейчас</button>
-  </div>
-
-  <footer>
-    © 2025 Камикадзе. Все права съедены.
-  </footer>
-
-  <!-- МОДАЛЬНОЕ ОКНО -->
-  <div id="orderModal" class="modal">
-    <div class="modal-content">
-      <h2>Спасибо за заказ!</h2>
-      <p> ТЕБЯ ВЗОРВУТ ТУШКАНЧИКИ ЧЕРЕЗ 5 МИНУТ 🚀🔥💥💣🛵💨</p>
-      <button class="close-btn" onclick="closeModal()">Принять</button>
-    </div>
-  </div>
-
-  <script>
-    function openModal() {
-      document.getElementById("orderModal").style.display = "block";
-    }
-
-    function closeModal() {
-      document.getElementById("orderModal").style.display = "none";
-    }
-
-    // Закрытие по клику вне окна
-    window.onclick = function(event) {
-      const modal = document.getElementById("orderModal");
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
-
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FoodExpress</div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">Рестораны</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Войти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Доставка любимой еды за 30 минут</h1>
+                <p>Более 500 ресторанов в вашем городе</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Введите адрес доставки...">
+                    <button>Найти</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+        <h2>Популярные рестораны</h2>
+        <div class="restaurants">
+            <div class="restaurant-card">
+                <div class="restaurant-img" style="background-image: url('https://example.com/pizza.jpg');"></div>
+                <div class="restaurant-info">
+                    <h3>Пицца Мания</h3>
+                    <p>Итальянская кухня • Пицца • Паста</p>
+                    <div>
+                        <span class="rating">★ 4.8</span>
+                        <span class="delivery-time">25-35 мин</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="restaurant-card">
+                <div class="restaurant-img" style="background-image: url('https://example.com/sushi.jpg');"></div>
+                <div class="restaurant-info">
+                    <h3>Суши Вок</h3>
+                    <p>Японская кухня • Суши • Роллы</p>
+                    <div>
+                        <span class="rating">★ 4.7</span>
+                        <span class="delivery-time">30-45 мин</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="restaurant-card">
+                <div class="restaurant-img" style="background-image: url('https://example.com/burger.jpg');"></div>
+                <div class="restaurant-info">
+                    <h3>Burger King</h3>
+                    <p>Фастфуд • Бургеры • Картошка</p>
+                    <div>
+                        <span class="rating">★ 4.5</span>
+                        <span class="delivery-time">20-30 мин</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+      
+<div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FoodExpress</h3>
+                    <p>Сервис доставки еды №1 в вашем городе. Работаем с 2010 года.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>Телефон: +7 (123) 456-78-90</li>
+                        <li>Email: info@foodexpress.ru</li>
+                        <li>Адрес: г. Москва, ул. Примерная, 123</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Партнерам</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Помощь</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 FoodExpress. Все права защищены.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
